@@ -9,5 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
+  ],
+  "files":[
+    "../src/app/app.module.ts",
+    "main.ts",
+    "polyfills.ts"
   ]
 }
