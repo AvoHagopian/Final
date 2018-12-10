@@ -1,0 +1,3 @@
+[submodule "Pantheon"]
+	path = Pantheon
+	url = https://github.com/AvoHagopian/Pantheon.git
