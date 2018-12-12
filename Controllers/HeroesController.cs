@@ -12,6 +12,7 @@ namespace Final.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class HeroesController : ControllerBase
     {
         private readonly FinalContext _context;
