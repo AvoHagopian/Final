@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Final.Models;
 using final.Models;
@@ -79,7 +80,7 @@ namespace Final.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(country);
         }
 
         // POST: api/Countries
