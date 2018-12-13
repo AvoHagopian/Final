@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Final.Models;
 using final.Models;
@@ -12,7 +13,6 @@ namespace Final.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CountriesController : ControllerBase
     {
         private readonly FinalContext _context;
@@ -80,7 +80,7 @@ namespace Final.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(country);
         }
 
         // POST: api/Countries
