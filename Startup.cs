@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Security.Claims;
-using System.Threading.Tasks;using System.Web;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -34,6 +38,8 @@ namespace final
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // string domain = $"https://hagopian.auth0.com/";
             // services.AddAuthentication(options =>
             // {
             //     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -41,10 +47,16 @@ namespace final
 
             // }).AddJwtBearer(options =>
             // {
-            //     options.Authority = "https://hagopian.auth0.com/";
-            //     options.Audience = "http://localhost:5001";
+            //     options.Authority = domain;
+            //     options.Audience = "https://panth/api";
             // });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // services.AddAuthorization(options =>
+            // {
+            //     options.AddPolicy("read:messages", policy => policy.Requirements.Add(new HasScopeRequirement("read:messages", domain)));
+            // });
+
+            // // register the scope authorization handler
+            // services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
